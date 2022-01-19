@@ -7,28 +7,28 @@ resource "google_project" "my_project" {
 }
 
 resource "random_string" "random" {
-  length           = 6
-  special          = false
-  lower            = false
-  upper            = false
+  length  = 6
+  special = false
+  lower   = false
+  upper   = false
 }
 
 resource "google_project_service" "project" {
   for_each = toset(var.service_apis)
-  project = google_project.my_project.id
-  service = each.key
+  project  = google_project.my_project.id
+  service  = each.key
 
   disable_dependent_services = false
-  disable_on_destroy = true
+  disable_on_destroy         = true
 }
 
 resource "google_compute_shared_vpc_host_project" "host" {
-  count = var.is_host_project ? 1 : 0
+  count   = var.is_host_project ? 1 : 0
   project = google_project.my_project.project_id
 }
 
 resource "google_compute_shared_vpc_service_project" "service" {
-  count = var.is_service_project ? 1 : 0
+  count           = var.is_service_project ? 1 : 0
   host_project    = var.host_project_id
   service_project = google_project.my_project.project_id
 }

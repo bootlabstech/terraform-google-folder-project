@@ -22,28 +22,57 @@ variable "folder_id" {
 // optional variables
 variable "auto_create_network" {
   type        = bool
-  description = "Create the 'default' network automatically. Default false. If set to false, the default network will be deleted. Note that, for quota purposes, you will still need to have 1 network slot available to create the project successfully, even if you set auto_create_network to false, since the network will exist momentarily."
   default     = false
+  description = <<-EOT
+  {
+   "type": "bool",
+   "purpose": "autocomplete",
+   "data": [
+  "true",
+  "false"
+   ],
+   "default":false
+   "description": "Creates the 'default' network automatically when true"
 }
-
+EOT   
+}
 variable "service_apis" {
   type        = list(string)
   description = "The list of apis to be enabled in the project"
   default     = []
 }
-
 variable "is_host_project" {
   type        = bool
-  description = "Set to true if this project should be a host project; both this and is_service_project cannot be true"
   default     = false
+  description = <<-EOT
+  {
+   "type": "bool",
+   "purpose": "autocomplete",
+   "data": [
+  "true",
+  "false"
+   ],
+   "default":false
+   "description": "Set to true if this project should be a host project; both this and is_service_project cannot be true"
 }
-
+EOT   
+}
 variable "is_service_project" {
   type        = bool
-  description = "Set to true if this project should be a service project; both this and is_host_project cannot be true"
   default     = false
+  description = <-EOT
+  {
+   "type": "bool",
+   "purpose": "autocomplete",
+   "data": [
+  "true",
+  "false"
+   ],
+   "default":false
+   "description": "Set to true if this project should be a service project; both this and is_host_project cannot be true"
 }
-
+EOT  
+}
 variable "host_project_id" {
   type        = string
   description = "the host project id; only needed when is_service_project is set to true"

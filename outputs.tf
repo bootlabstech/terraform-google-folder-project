@@ -1,3 +1,3 @@
 output "id" {
-  value = google_project.my_project.id
+  value = trimprefix(google_project.my_project.id, "projects/")
 }

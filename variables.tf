@@ -11,7 +11,14 @@ variable "project_id_prefix" {
 
 variable "billing_account" {
   type        = string
-  description = "The alphanumeric ID of the billing account this project belongs to. The user or service account performing this operation with Terraform must have at minimum Billing Account User privileges (roles/billing.user) on the billing account."
+  description = <<-EOT
+  {
+   "type": "json",
+   "purpose": "autocomplete",
+   "data": "/api/v1/autocomplete/billingid",
+   "description": "The alphanumeric ID of the billing account this project belongs to."
+}
+EOT 
 }
 
 variable "folder_id" {
@@ -25,13 +32,13 @@ variable "auto_create_network" {
   default     = false
   description = <<-EOT
   {
-   "type": "bool",
+   "type": "json",
    "purpose": "autocomplete",
    "data": [
   "true",
   "false"
    ],
-   "default":false
+   "default":false,
    "description": "Creates the 'default' network automatically when true"
 }
 EOT   
@@ -46,13 +53,13 @@ variable "is_host_project" {
   default     = false
   description = <<-EOT
   {
-   "type": "bool",
+   "type": "json",
    "purpose": "autocomplete",
    "data": [
   "true",
   "false"
    ],
-   "default":false
+   "default":false,
    "description": "Set to true if this project should be a host project; both this and is_service_project cannot be true"
 }
 EOT   
@@ -62,13 +69,13 @@ variable "is_service_project" {
   default     = false
   description = <-EOT
   {
-   "type": "bool",
+   "type": "json",
    "purpose": "autocomplete",
    "data": [
   "true",
   "false"
    ],
-   "default":false
+   "default":false,
    "description": "Set to true if this project should be a service project; both this and is_host_project cannot be true"
 }
 EOT  

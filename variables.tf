@@ -13,7 +13,7 @@ variable "billing_account" {
   type        = string
   description = <<-EOT
   {
-   "type": "json",
+   "type": "api",
    "purpose": "autocomplete",
    "data": "/api/v1/autocomplete/billingid",
    "description": "The alphanumeric ID of the billing account this project belongs to."

@@ -22,7 +22,18 @@ variable "folder_id" {
 // optional variables
 variable "auto_create_network" {
   type        = bool
-  description = "Create the 'default' network automatically. Default false. If set to false, the default network will be deleted. Note that, for quota purposes, you will still need to have 1 network slot available to create the project successfully, even if you set auto_create_network to false, since the network will exist momentarily."
+  description = <<-EOT
+  {
+	"type": "json",
+	"purpose": "autocomplete",
+	"data": [
+		"true",
+		"false"
+	],
+	"Default": "false",
+	"description": "if true, creates default network automatically"
+}
+EOT
   default     = false
 }
 
@@ -34,13 +45,35 @@ variable "service_apis" {
 
 variable "is_host_project" {
   type        = bool
-  description = "Set to true if this project should be a host project; both this and is_service_project cannot be true"
+  description = <<-EOT
+  {
+	"type": "json",
+	"purpose": "autocomplete",
+	"data": [
+		"true",
+		"false"
+	],
+	"Default": "false",
+	"description": "Set to true if this project should be a host project; both this and is_service_project cannot be true"
+}
+EOT
   default     = false
 }
 
 variable "is_service_project" {
   type        = bool
-  description = "Set to true if this project should be a service project; both this and is_host_project cannot be true"
+  description = <<-EOT
+  {
+	"type": "json",
+	"purpose": "autocomplete",
+	"data": [
+		"true",
+		"false"
+	],
+	"Default": "false",
+	"description": "Set to true if this project should be a service project; both this and is_host_project cannot be true"
+}
+EOT
   default     = false
 }
 

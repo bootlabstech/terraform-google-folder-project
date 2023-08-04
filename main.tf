@@ -4,6 +4,9 @@ resource "google_project" "my_project" {
   folder_id           = var.folder_id
   billing_account     = var.billing_account
   auto_create_network = var.auto_create_network
+    lifecycle {
+    ignore_changes = [labels]
+  }
 }
 
 resource "random_string" "random" {

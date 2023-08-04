@@ -35,3 +35,5 @@ resource "google_compute_shared_vpc_service_project" "service" {
   host_project    = var.host_project_id
   service_project = google_project.my_project.project_id
 }
+data "google_project" "my_project" {}
+

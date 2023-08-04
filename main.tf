@@ -36,6 +36,6 @@ resource "google_compute_shared_vpc_service_project" "service" {
   service_project = google_project.my_project.project_id
 }
 data "google_project" "my_project" {
-  project = google_project.my_project.id
+  project_id = google_project.my_project.id
 }
 

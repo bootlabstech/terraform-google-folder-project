@@ -20,8 +20,7 @@ resource "google_project_service" "project" {
   for_each = toset(var.service_apis)
   project  = google_project.my_project.id
   service  = each.key
-
-  disable_dependent_services = false
+  disable_dependent_services = true
   disable_on_destroy         = true
 }
 
@@ -37,5 +36,11 @@ resource "google_compute_shared_vpc_service_project" "service" {
 }
 data "google_project" "my_project" {
   project_id = google_project.my_project.id
+}
+resource "google_project_service_identity" "hc_sa" {
+  for_each = toset(var.service_apis)
+  provider = google-beta
+  project = data.google_project.my_project.project_id
+  service  = each.key
 }
 
